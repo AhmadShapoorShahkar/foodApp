@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Checkout</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li class="logo-img"><a href="./index.html"><img src="./homeTaste logo.png" alt="the logo"></a></li>
+            <li class="li-navbar"><a class="a-navbar" href="./index.html">Home</a></li>
+            <li class="li-navbar dropdown"><a class="a-navbar" href="#">Categories</a></li>
+            <li class="li-navbar"><a class="a-navbar" href="./contact.html">Contact</a></li>
+            <li class="li-navbar"><a class="a-navbar" href="./about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <h1>Checkout</h1>
+    <div id="checkoutItems"></div>
+    <p><strong>Only cash accepted!</strong> - Total: <span id="totalAmount">0</span> CHF</p>
+
+    <!-- Pickup/Delivery Options -->
+    <h3>Choose Your Option:</h3>
+    <div>
+        <label>
+            <input type="checkbox" id="pickup" onchange="selectOption('pickup')"> Pickup
+        </label>
+        <label>
+            <input type="checkbox" id="delivery" onchange="selectOption('delivery')"> Delivery
+        </label>
+    </div>
+
+    <p id="deliveryMessage">Delivery fee 5 CHF, not included in totalAmount.</p>
+
+    <form action="">
+        <label for="full_name">Full Name</label>
+        <input type="text" name="full_name" id="full_name" required size="40">
+        <br><br>
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone_number" required>
+        <br><br>
+        <label for="full_address">Full Address</label>
+        <input type="text" name="full_address" id="full_address" size="40">
+        <br><br>
+        <p id="comprehension">Do you have any allergies?</p>
+        <label for="allergy_yes">Yes</label>
+        <input type="radio" id="allergy_yes" name="allergies" value="Yes">
+        <label for="allergy_no">No</label>
+        <input type="radio" id="allergy_no" name="allergies" value="No">
+        <br><br>
+        <label for="comment">Comment</label>
+        <textarea name="comment" id="comment"></textarea>
+        <hr>
+        <label for="consent">By clicking on the button <strong>place order</strong>, we will receive your order and it will be ready in <strong>maximum 2 hours!</strong></label>
+        <input type="checkbox" id="consent" name="consent" value="agree">
+    </form>
+
+    <button id="placeOrderButton" type="button">Place Order</button>
+
+    <style>
+        h1 {
+            margin-top: 120px;
+        }
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        /* Checkout Item Styles */
+        #checkoutItems div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        #checkoutItems img {
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+        #checkoutItems span {
+            font-size: 16px;
+        }
+        /* Total Price */
+        #totalAmount {
+            font-weight: bold;
+            color: green;
+            font-size: 18px;
+        }
+        /* Pickup/Delivery Options */
+        h3 {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        label {
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        #deliveryMessage {
+            font-size: 14px;
+            color: red;
+            display: none;
+        }
+        /* Place Order Button */
+        #placeOrderButton {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background-color: green;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        #placeOrderButton:hover {
+            background-color: darkgreen;
+        }
+
+        #comment{
+            columns: 50;
+        }
+        form{
+            align-items: center;
+            padding: 0px 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+  /* Adjust general styles */
+  h1 {
+    margin-top: 150px; /* Reduce margin for smaller screens */
+  }
+
+  body {
+    margin: 10px; /* Adjust body margin */
+  }
+
+  /* Flexibly resize checkout item elements */
+  #checkoutItems div {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start;
+    margin-bottom: 20px; /* Add extra space between items */
+  }
+
+  #checkoutItems img {
+    max-width: 100%; /* Make images fully responsive */
+    margin-bottom: 10px;
+  }
+
+  #checkoutItems span {
+    font-size: 14px; /* Reduce font size */
+  }
+
+  #totalAmount {
+    font-size: 16px;
+  }
+
+  /* Adjust Place Order Button */
+  #placeOrderButton {
+    width: 100%; /* Button takes full width on smaller screens */
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  h1 {
+    margin-top: 150px;
+  }
+
+  body {
+    margin: 5px;
+  }
+  #checkoutItems img {
+    max-width: 100%; /* Make images fully responsive */
+    margin-bottom: 10px;
+    }
+
+  #checkoutItems div {
+    padding-bottom: 5px; /* Reduce padding */
+  }
+
+  #checkoutItems span {
+    font-size: 12px;
+  }
+
+  #placeOrderButton {
+    padding: 8px; /* Adjust padding for touch-friendly interaction */
+  }
+}
+
+    </style>
+
+    <script>
+        let basket = JSON.parse(localStorage.getItem("basket")) || [];
+        let checkoutItems = document.getElementById("checkoutItems");
+        let totalAmount = document.getElementById("totalAmount");
+
+        function renderCheckout() {
+            let total = 0;
+            checkoutItems.innerHTML = "";
+
+            basket.forEach(item => {
+                let itemDiv = document.createElement("div");
+                itemDiv.style.display = "flex";
+                itemDiv.style.alignItems = "center";
+                itemDiv.style.marginBottom = "10px";
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" width="100" height="70" style="margin-right: 15px; border-radius: 5px;">
+                    <span>${item.name} - ${item.quantity} x ${item.price} CHF</span>
+                `;
+                checkoutItems.appendChild(itemDiv);
+
+                total += item.quantity * item.price;
+            });
+
+            totalAmount.textContent = total;
+        }
+
+        function selectOption(option) {
+            document.getElementById("pickup").checked = (option === "pickup");
+            document.getElementById("delivery").checked = (option === "delivery");
+
+            let deliveryMessage = document.getElementById("deliveryMessage");
+            deliveryMessage.style.display = option === "delivery" ? "block" : "none";
+
+            if (option === "delivery" && !document.getElementById("full_address").value) {
+                alert("Please provide your delivery address!");
+            }
+        }
+
+        function handlePlaceOrder() {
+            if (basket.length === 0) {
+                alert("Your basket is empty!");
+                return;
+            }
+
+            const isPickup = document.getElementById("pickup").checked;
+            const isDelivery = document.getElementById("delivery").checked;
+
+            if (!isPickup && !isDelivery) {
+                alert("Please select Pickup or Delivery before placing your order!");
+                return;
+            }
+
+            const selectedOption = isPickup ? "Pickup" : "Delivery";
+
+            const fullName = document.getElementById("full_name").value;
+            const phoneNumber = document.getElementById("phone_number").value;
+            const fullAddress = document.getElementById("full_address").value;
+            const allergies = document.querySelector('input[name="allergies"]:checked')?.value || "No";
+            const comment = document.getElementById("comment").value;
+            const consent = document.getElementById("consent").checked;
+
+            if (!fullName || !phoneNumber || !consent) {
+                alert("Please fill in the required fields and agree to the terms!");
+                return;
+            }
+
+            emailjs.init("qDpn-a8hE8PMlCVUw"); // Replace with your EmailJS public key
+            emailjs.send("service_z27fu7x", "template_5f9xzky", {
+                name: fullName,
+                time: new Date().toLocaleString(),
+                message: `
+                    Delivery Option: ${selectedOption}
+                    Address: ${fullAddress || "Not provided"}
+                    Phone: ${phoneNumber}
+                    Total Price: ${totalAmount.textContent} CHF
+                    Order Details:
+                    ${basket.map(item => `- ${item.name} (${item.quantity}x @ ${item.price} CHF)`).join("\n")}
+                    Allergies: ${allergies}
+                    Comment: ${comment}
+                `,
+            }).then(function(response) {
+                alert("Your order has been placed successfully!");
+                localStorage.removeItem("basket");
+                window.location.href = "./index.html";
+            }, function(error) {
+                alert("Failed to place the order. Please try again!");
+                console.error("EmailJS Error:", error);
+            });
+        }
+
+        document.getElementById("placeOrderButton").addEventListener("click", handlePlaceOrder);
+        renderCheckout();
+    </script>
+</body>
+</html>

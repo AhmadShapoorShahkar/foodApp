@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodApp fry bolani</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li class="logo-img"><a href="./index.html"><img src="./homeTaste logo.png" alt="the logo"></a></li>
+            <li class="li-navbar"><a class="a-navbar" href="./index.html">Home</a></li>
+            <li class="li-navbar"><a class="a-navbar" href="./contact.html">Contact</a></li>
+            <li class="li-navbar"><a class="a-navbar" href="./about.html">About</a></li>
+            <li class="li-navbar"><a href="./basket.html"><img src="./basket-img.jpg" alt="basket-img" id="basket-img"></a></li>
+        </ul>
+    </nav>
+
+    <style>
+        .main-container{
+            width: 1000px;
+            margin-top: 150px;
+            display: inline-flex;
+        }
+
+        .img-container{
+            width: 500px;
+        }
+
+        .text-container{
+            width: 500px;
+        }
+        .buttons{
+            display: inline-flex;
+            margin-top: 50px ;
+        }
+        .add-to-basket{
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 5px;
+            margin-right: 10px;
+            font-size: large;
+        }
+        .add-to-basket:hover{
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        @media screen and (max-width: 768px) {
+  /* Adjust main container layout */
+  .main-container {
+    width: 90%;
+    flex-direction: column; /* Stack the img and text containers */
+    align-items: center;
+    margin-top: 150px;
+  }
+
+  .img-container,
+  .text-container {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  /* Adjust button layout */
+  .buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center;
+  }
+
+  .add-to-basket {
+    width: 80%; /* Make buttons occupy a larger portion of the screen */
+    font-size: medium;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Further adjustments for very small devices */
+  .main-container {
+    margin-top: 150px;
+  }
+
+  .add-to-basket {
+    width: 100%;
+    padding: 10px;
+  }
+  .img-container img{
+    max-width: 300px; 
+    max-height: auto;
+    }
+}
+
+       
+
+    </style>
+
+    <div class="main-container">
+        <div class="img-container">
+            <img src="./bolani.webp" alt="ayekhanum" width="450px" height="300">
+        </div>
+
+        <div class="text-container">
+            <h2>Fry Bolani / 5 for 10 CHF</h2>
+            <p>Fry Bolani is a tasty Afghan traditional food which is prepared with spinach!</p>
+            <p>And! of course a lot of spices are used too!</p>
+            <p><strong>If you have allergy with the spices or any other type of ingrediants, let us know in the comment section when checkout!</strong></p>
+
+            <button onclick="decreaseCount()" type="button">-</button>
+            <span id="counterDisplay">1</span>
+            <button onclick="increaseCount()" type="button">+</button>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="add-to-basket" onclick="addToBasket()" type="button">Add to basket</button>
+    </div>
+
+    <script>
+        let counter = 1; // Initial value
+
+        // Function to increase the counter
+        function increaseCount() {
+            counter++;
+            document.getElementById("counterDisplay").innerText = counter;
+        }
+
+        // Function to decrease the counter
+        function decreaseCount() {
+            if (counter > 1) {
+                counter--;
+                document.getElementById("counterDisplay").innerText = counter;
+            }
+        }
+
+
+        function addToBasket() {
+    const item = {
+        name: "Fry Bolani",
+        price: 10,
+        quantity: counter,
+        image: "./bolani.webp" // Include the image URL
+    };
+
+    let basket = JSON.parse(localStorage.getItem("basket")) || [];
+    basket.push(item);
+    localStorage.setItem("basket", JSON.stringify(basket));
+
+    alert(`${item.quantity} ${item.name}(s) added to your basket!`);
+}
+
+
+   
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+  }
+  
+  .navbar {
+    width: 100%;
+    background-color: white;
+    padding: 0;
+    position: fixed;
+    z-index: 1000;
+    border-bottom: 0.5;
+    color: lightgray;
+    box-shadow: 0.5px 0.5px;
+    text-align: center;
+  }
+
+  .logo-img img{
+    width: 100px;
+    height: 50px;
+  }
+  .logo-img img:hover{
+    width: 200px;
+    height: 100px;
+    margin: -10px -10px;
+    transition: width ease-out 0.5s, hight ease-out 0.5s;
+  }
+  
+  .navbar .logo-img {
+    display: inline-block;
+    border: none;
+    margin: 0 200px 0 0;
+    position: relative;
+    list-style-type: none;
+  }
+  
+  .navbar .li-navbar {
+    display: inline-block;
+    border: none;
+    margin-right: 10px;
+    position: relative;
+    list-style-type: none;
+  }
+  
+  .navbar .li-navbar .a-navbar {
+    color: black;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  .navbar .li-navbar {
+    padding: 5px 5px;
+  }
+  
+  .navbar .li-navbar:hover {
+    background-color: #4cbcc6;
+  }
+  
+  .navbar .li-navbar .a-navbar:hover {
+    background-color: #4cbcc6;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    list-style-type: none;
+    overflow: scroll;
+    height: 700px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+  /*===============================================================================*/
+
+  .main-text-container{
+    margin-top: 100px;
+  }
+  .open-or-close{
+    color: green;
+  }
+
+  .cash-problem{
+    color: red;
+  }
+  
+
+  .category-images-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    width: 50%;
+    max-width: 1000px;
+    margin-bottom: 50px;
+  }
+
+  .h3-img-container{
+    background-color: transparent;
+    flex: 0 0 calc(50% - 20px); /* Two columns with space between cards */
+    height: 250px;
+    overflow: hidden;
+    text-align: center;
+    width: 20%;
+    box-shadow: 1px 1px 2px 1px;
+    line-height: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .h3-img-container img{
+    height: 160px;
+    width: 280px;
+  }
+  .h3-img-container a{
+    text-decoration: none;
+  }
+  .h3-img-container p{
+    font-size: larger;
+    color: red;
+  }
+
+  .food{
+    display: flex;
+    padding-right: 20px;
+    margin-top: 20px; 
+  }
+  #basket-img{
+    width: 30px;
+    height: 30px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    /* Adjust navbar for tablets and smaller devices */
+    .navbar {
+      flex-direction: column;
+      text-align: left;
+      padding: 10px;
+    }
+  
+    .navbar .logo-img {
+      margin: 0 auto;
+    }
+  
+    /* Resize images */
+    .logo-img img {
+      width: 80px;
+      height: 40px;
+    }
+  
+    .category-images-container {
+      width: 90%;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .h3-img-container {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+  
+    .h3-img-container img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .dropdown-content {
+      height: 300px;
+    }
+    .main-text-container{
+      margin-top: 150px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    /* Adjust layout for phones */
+    .navbar {
+      padding: 5px;
+    }
+  
+    .category-images-container {
+      gap: 10px;
+    }
+  
+    .h3-img-container {
+      height: auto;
+      padding: 5px;
+    }
+  
+    .food {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100px;
+      height: 75px;
+    }
+    .main-text-container{
+      margin-top: 150px;
+    }
+  }
+  
